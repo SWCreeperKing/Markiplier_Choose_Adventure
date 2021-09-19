@@ -46,6 +46,7 @@ function ending() {
     if (key in endingsFound) {
         if (!endingsFound[key].includes(start)) endingsFound[key].push(start)
     } else endingsFound[key] = [start]
+    save()
     loadEndings()
 }
 
