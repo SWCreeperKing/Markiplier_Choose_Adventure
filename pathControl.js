@@ -11,6 +11,12 @@ function reloadVideo() {
     iframe.src = "https://www.youtube.com/embed/" + line[start] + "?rel=0&autoplay=1";
 }
 
+
+function toFirst() {
+    start = start.charAt(0)+"."
+    reloadVideo()
+}
+
 function option1() {
     if (start in endingNum) {
         ending()

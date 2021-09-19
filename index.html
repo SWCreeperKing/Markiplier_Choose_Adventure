@@ -6,6 +6,15 @@
     <script src="pathing.js"></script>
     <script src="endings.js"></script>
     <script src="pathControl.js"></script>
+    <style>
+        button.nav {
+            font-size: 30px
+        }
+        button {
+            background: #0A0C19;
+            color: #9f9f9f;
+        }
+    </style>
 </head>
 <body style="background: black">
 <button onclick="loadVideos(0)">A Date with Markiplier</button>
@@ -16,12 +25,14 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
 ></iframe>
 <div style="text-align: center">
-    <button style="font-size: 30px" onclick="back()">Back</button>
-    <button style="font-size: 30px" onclick="option1()">Option 1</button>
-    <button style="font-size: 30px" onclick="option2()">Option 2</button>
+    <button class="nav" onclick="toFirst()">Back to First</button>
+    <button class="nav" onclick="back()">Back</button>
+    <button class="nav" onclick="option1()">Option 1</button>
+    <button class="nav" onclick="option2()">Option 2</button>
 </div>
 <h2 style="text-align: center"><a href="https://www.youtube.com/channel/UC7_YxT-KID8kRbqZo7MyscQ">Markiplier's
-    Channel</a> | <a href="https://www.youtube.com/watch?v=9TjfkXmwbTs">Original Video</a></h2>
+    Channel</a> | <a href="https://www.youtube.com/watch?v=9TjfkXmwbTs">Original Video (Heist)</a> |
+    <a href="https://www.youtube.com/watch?v=yyU_1JD2wuA">Original Video (Date)</a></h2>
 <br>
 <br>
 <button onclick="reset()">Reset Endings</button>
