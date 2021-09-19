@@ -56,7 +56,9 @@ function loadEndings() {
     let ends = {}
     for (const ending in endingNum) {
         let key = ending.charAt(0)
-        if (!(key in endingsFound) || !endingsFound[key].includes(ending)) continue
+        if (!(key in endingsFound)) continue
+        if (endingsFound[key] === null) continue
+        if (!(endingsFound[key].includes(ending))) continue
         if (key in ends) ends[key].push(ending)
         else ends[key] = [ending]
     }
@@ -71,13 +73,14 @@ function getString(arr) {
     let divString = ""
     for (const key of arr) {
         let end = endingNum[key]
-        divString += "<li><button onclick=\"setStart('"+key+"')\">" + end[0] + ". " + end[1] + "</button></li>"
+        divString += "<li><button onclick=\"setStart('" + key + "')\">" + end[0] + ". " + end[1] + "</button></li>"
     }
     return "<ul>" + divString + "</ul>"
 }
 
 function reset() {
     localStorage.removeItem("endings")
+    localStorage.removeItem("start")
     endingsFound = {}
     loadEndings()
     start = "1."
@@ -86,4 +89,5 @@ function reset() {
 
 function save() {
     localStorage.setItem("endings", JSON.stringify(endingsFound))
+    localStorage.setItem("start", JSON.stringify(start))
 }

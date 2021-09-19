@@ -40,7 +40,10 @@
     let jString = localStorage.getItem("endings")
     if (jString !== null) {
         endingsFound = JSON.parse(jString)
+        let jString2 = localStorage.getItem("start")
+        if (jString2 !== null) start = JSON.parse(jString2)
         loadEndings()
+        reloadVideo()
     }
 </script>
 </body>
