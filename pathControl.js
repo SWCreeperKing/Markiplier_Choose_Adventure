@@ -1,6 +1,5 @@
 let start = "1."
 let endingsFound = []
-let showEndings = false
 
 function loadVideos(videoSetNum) {
     start = videoSetNum + "."
@@ -37,7 +36,53 @@ function back() {
     reloadVideo()
 }
 
+function setStart(strt) {
+    start = strt
+    reloadVideo()
+}
+
 function ending() {
-    if (start in endingsFound) return
-    endingsFound.push(start)
+    let key = start.charAt(0)
+    if (key in endingsFound) {
+        if (!endingsFound[key].includes(start)) endingsFound[key].push(start)
+    } else endingsFound[key] = [start]
+    loadEndings()
+}
+
+function loadEndings() {
+    let div = document.getElementById("endings")
+    div.innerHTML = ""
+    let ends = {}
+    for (const ending in endingNum) {
+        let key = ending.charAt(0)
+        if (!(key in endingsFound) || !endingsFound[key].includes(ending)) continue
+        if (key in ends) ends[key].push(ending)
+        else ends[key] = [ending]
+    }
+    for (const end in ends) {
+        console.log("string: " + getString(ends[end]))
+        div.innerHTML += getString(ends[end])
+    }
+}
+
+function getString(arr) {
+    if (arr === undefined || arr.length < 1) return ""
+    let divString = ""
+    for (const key of arr) {
+        let end = endingNum[key]
+        divString += "<li><button onclick=\"setStart('"+key+"')\">" + end[0] + ". " + end[1] + "</button></li>"
+    }
+    return "<ul>" + divString + "</ul>"
+}
+
+function reset() {
+    localStorage.removeItem("endings")
+    endingsFound = {}
+    loadEndings()
+    start = "1."
+    reloadVideo()
+}
+
+function save() {
+    localStorage.setItem("endings", JSON.stringify(endingsFound))
 }

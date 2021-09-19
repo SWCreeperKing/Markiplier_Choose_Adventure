@@ -19,5 +19,23 @@
 <button onclick="back()">Back</button>
 <button onclick="option1()">Option 1</button>
 <button onclick="option2()">Option 2</button>
+<br>
+<br>
+<button onclick="reset()">Reset Endings</button>
+<br>
+<br>
+<button onclick="save()">Save</button>
+<br>
+<br>
+<h3 style="color: white">Endings: </h3>
+<div id="endings" style="color: white">
+</div>
+<script>
+    let jString = localStorage.getItem("endings")
+    if (jString !== null) {
+        endingsFound = JSON.parse(jString)
+        loadEndings()
+    }
+</script>
 </body>
 </html>
