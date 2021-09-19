@@ -50,7 +50,8 @@ function setStart(strt) {
 function ending() {
     let key = start.charAt(0)
     if (key in endingsFound) {
-        if (!endingsFound[key].includes(start)) endingsFound[key].push(start)
+        if (endingsFound[key] === null) endingsFound[key] = [start]
+        else if (!endingsFound[key].includes(start)) endingsFound[key].push(start)
     } else endingsFound[key] = [start]
     save()
     loadEndings()
